@@ -17,13 +17,14 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     this.fetchStudentsData();
     // this.sumOfAttendies();
+
   }
   fetchStudentsData(){
     this.stdService.fetcData().subscribe(
       (data:any)=>{
         this.students=data;
         this.noOfATTendies();
-
+        this.noOfYears();
       },(error:any)=>{
         console.log('check errror..>',error);
 
@@ -31,18 +32,10 @@ export class SummaryComponent implements OnInit {
   )}
   //find out the years
   noOfYears(){
-    for(let i=0;i<this.students.length;i++){
-      for(let j=i+1;j<this.students.length;j++){
-        if(this.students[i].StartYear!==this.students[j].StartYear)
-            this.years.push(this.students[i])
-      }
+   this.years=this.students.filter((item:object)=>{
+               this.students.every()
 
-
-    }
-
-
-
-
+   })
   }
   //find out no of attendis
   noOfATTendies(){
@@ -56,7 +49,7 @@ export class SummaryComponent implements OnInit {
     console.log('check no of attendies..>',this.attendesof_year);
   }
 
-  //aver average of the atttendies
+  //average of the atttendies
   sumOfAttendies(){
     for(let i=0;i<this.students.length;i++){
         for(let j=0;j<this.students[i].GPARecord.length;j++){
